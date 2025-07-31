@@ -1,0 +1,88 @@
+class Nhanvien():
+    def __init__(self,manv = None,hoten = None,luong = None):
+        self.manv = manv
+        self.hoten = hoten
+        self.luong = luong
+        
+    def nhap(self):
+        self.manv = input("Nhap ma nhan vien: ")
+        self.hoten = input("Nhap ho ten nhan vien: ")
+        self.luong = float(input("Nhap luong nhan vien: "))
+        
+    def xuat(self):
+        print("Ma nhan vien: ",self.manv)
+        print("Ho ten nhan vien: ",self.hoten)
+        print("Luong nhan vien: ",self.luong)
+def nhapm():
+    while True:
+        n=int(input("Nhap so luong nhan vien: "))
+        if n>0:
+            break
+    return n
+def nhapds(lst,n):
+    for i in range(n):
+        print("Nhap nhan vien thu",i+1)
+        x = Nhanvien()
+        x.nhap()
+        lst.append(x)
+def xuatds(lst,n):
+    print("Danh sach nhan vien")
+    for i in lst:
+        lst[i].xuat()
+def xeptangdanluongInter(lst):
+    for i in range(len(lst)-1):
+        for j in range(i+1,len(lst)):
+            if lst[i].luong>lst[j].luong:
+                lst[i],lst[j]=lst[j],lst[i]
+def xepgiamdanteninter(lst):
+    for i in range(len(lst)-1):
+        for j in range(i+1,len(lst)):
+            if lst[i].hoten<lst[j].hoten:
+                lst[i],lst[j]=lst[j],lst[i]
+def xepgiamdanluongbubble(lst):
+    for i in range(len(lst)-1):
+        for j in range(len(lst)-1,i,-1):
+            if lst[j].luong>lst[j-1].luong:
+                lst[j],lst[j-1]=lst[j-1],lst[j]
+def xeptangdanbubble(lst):
+    for i in range(len(lst)-1):
+        for j in range(len(lst)-1,i,-1):
+            if lst[j].luong<lst[j-1].luong:
+                lst[j],lst[j-1]=lst[j-1],lst[j]
+def main():
+    lst = []
+   while True:
+       print("1. Nhap danh sach nhan vien")
+       print("2. Xuat danh sach nhan vien")
+       print("3. Sap xep tang dan theo luong (Interchange Sort)")
+       print("4. Sap xep giam dan theo ten (Interchange Sort)")
+       print("5. Sap xep giam dan theo luong (Bubble Sort)")
+       print("6. Sap xep tang dan theo luong (Bubble Sort)")
+       print("7. Thoat")
+       choice = int(input("Nhap lua chon cua ban: "))
+       
+       if choice ==1:
+           n=nhapm()
+           nhapds(lst,n)
+       elif choice ==2:
+           xuatds(lst,n)
+        elif choice ==3:
+            xeptangdanluongInter(lst)
+        elif choice ==4:
+            xepgiamdanteninter(lst)
+        elif choice ==5:
+           xepgiamdanluongbubble(lst)
+           print("Danh sach nhan vien sau khi sap xep giam dan theo luong (Bubble Sort)")
+           xuatds(lst,n)
+       elif choice ==6:
+           xeptangdanbubble(lst)
+           print("Danh sach nhan vien sau khi sap xep tang dan theo luong (Bubble Sort)")
+           xuatds(lst,n)
+        elif choice ==7:
+            print("Ket thuc chuong trinh")
+            break
+       else:
+            print("Lua chon khong hop le")
+            
+if __name__ == "__main__":
+    main()
